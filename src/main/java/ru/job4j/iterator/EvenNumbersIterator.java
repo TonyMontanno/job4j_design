@@ -19,19 +19,21 @@ public class EvenNumbersIterator implements Iterator<Integer> {
 
     @Override
     public Integer next() {
-        if (!findNextEven()) {
+        if (!hasNext()) {
             throw new NoSuchElementException();
         }
         return data[index++];
     }
 
     private boolean findNextEven() {
+        boolean foundEven = false;
         while (index < data.length) {
             if (data[index] % 2 == 0) {
-                return true;
+                foundEven = true;
+                break;
             }
             index++;
         }
-        return false;
+        return foundEven;
     }
 }
