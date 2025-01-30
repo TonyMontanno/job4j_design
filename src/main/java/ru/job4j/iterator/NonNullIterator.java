@@ -5,6 +5,7 @@ import java.util.NoSuchElementException;
 
 public class NonNullIterator implements Iterator<Integer> {
 
+    //
     private Integer[] data;
     private int index;
 
