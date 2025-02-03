@@ -11,7 +11,7 @@ public final class MemStore<T extends Base> implements Store<T> {
     public void add(T model) {
         String id = model.getId();
         if (!storage.containsKey(id)) {
-            storage.put(id, model);
+            storage.putIfAbsent(id, model);
         }
     }
 
