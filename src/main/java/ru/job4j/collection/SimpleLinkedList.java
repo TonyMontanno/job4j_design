@@ -34,7 +34,6 @@ public class SimpleLinkedList<E> implements SimpleLinked<E> {
         for (int i = 0; i < index; i++) {
             current = current.next;
         }
-
         return current.item;
     }
 
