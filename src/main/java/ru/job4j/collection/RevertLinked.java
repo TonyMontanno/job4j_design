@@ -20,51 +20,52 @@ public class RevertLinked<T> implements Iterable<T> {
     }
 
     public boolean revert() {
-        if (head == null || head.next == null) {
-            return false;
-        }
-        Node<T> current = head;
-        Node<T> previous = null;
+        if (head != null && head.next != null) {
+            Node<T> current = head;
+            Node<T> previous = null;
 
-        while (current != null) {
-            Node<T> next = current.next;
-            current.next = previous;
-            previous = current;
-            current = next;
-        }
-        head = previous;
-        return true;
-    }
-
-    @Override
-    public Iterator<T> iterator() {
-        return new Iterator<>() {
-            Node<T> node = head;
-
-            @Override
-            public boolean hasNext() {
-                return node != null;
+            while (current != null) {
+                Node<T> next = current.next;
+                current.next = previous;
+                previous = current;
+                current = next;
             }
 
-            @Override
-            public T next() {
-                if (!hasNext()) {
-                    throw new NoSuchElementException();
-                }
-                T value = node.value;
-                node = node.next;
-                return value;
-            }
-        };
-    }
-
-    private static class Node<T> {
-        T value;
-        Node<T> next;
-
-        public Node(T value, Node<T> next) {
-            this.value = value;
-            this.next = next;
+            head = previous;
         }
+
+        return head != null &&  head.next != null;
     }
+
+@Override
+public Iterator<T> iterator() {
+    return new Iterator<>() {
+        Node<T> node = head;
+
+        @Override
+        public boolean hasNext() {
+            return node != null;
+        }
+
+        @Override
+        public T next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            T value = node.value;
+            node = node.next;
+            return value;
+        }
+    };
+}
+
+private static class Node<T> {
+    T value;
+    Node<T> next;
+
+    public Node(T value, Node<T> next) {
+        this.value = value;
+        this.next = next;
+    }
+}
 }
