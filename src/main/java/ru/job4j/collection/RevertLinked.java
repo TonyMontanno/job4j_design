@@ -20,7 +20,9 @@ public class RevertLinked<T> implements Iterable<T> {
     }
 
     public boolean revert() {
-        if (head != null && head.next != null) {
+        boolean shouldRevert = head != null && head.next != null;
+
+        if (shouldRevert) {
             Node<T> current = head;
             Node<T> previous = null;
 
@@ -34,38 +36,38 @@ public class RevertLinked<T> implements Iterable<T> {
             head = previous;
         }
 
-        return head != null &&  head.next != null;
+        return shouldRevert;
     }
 
-@Override
-public Iterator<T> iterator() {
-    return new Iterator<>() {
-        Node<T> node = head;
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<>() {
+            Node<T> node = head;
 
-        @Override
-        public boolean hasNext() {
-            return node != null;
-        }
-
-        @Override
-        public T next() {
-            if (!hasNext()) {
-                throw new NoSuchElementException();
+            @Override
+            public boolean hasNext() {
+                return node != null;
             }
-            T value = node.value;
-            node = node.next;
-            return value;
-        }
-    };
-}
 
-private static class Node<T> {
-    T value;
-    Node<T> next;
-
-    public Node(T value, Node<T> next) {
-        this.value = value;
-        this.next = next;
+            @Override
+            public T next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                T value = node.value;
+                node = node.next;
+                return value;
+            }
+        };
     }
-}
+
+    private static class Node<T> {
+        T value;
+        Node<T> next;
+
+        public Node(T value, Node<T> next) {
+            this.value = value;
+            this.next = next;
+        }
+    }
 }
