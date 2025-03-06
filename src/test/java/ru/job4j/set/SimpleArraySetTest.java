@@ -38,4 +38,24 @@ class SimpleArraySetTest {
         assertThat(set.contains(null)).isTrue();
         assertThat(set.add(null)).isFalse();
     }
+
+    @Test
+    void whenCheckContains() {
+        SimpleSet<String> set = new SimpleArraySet<>();
+
+        assertThat(set.contains("apple")).isFalse();
+        assertThat(set.contains(null)).isFalse();
+
+        set.add("apple");
+        set.add("banana");
+        set.add(null);
+
+
+        assertThat(set.contains("apple")).isTrue();
+        assertThat(set.contains("banana")).isTrue();
+        assertThat(set.contains(null)).isTrue();
+
+        assertThat(set.contains("orange")).isFalse();
+        assertThat(set.contains("grape")).isFalse();
+    }
 }
