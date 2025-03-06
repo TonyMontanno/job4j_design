@@ -50,7 +50,6 @@ class SimpleArraySetTest {
         set.add("banana");
         set.add(null);
 
-
         assertThat(set.contains("apple")).isTrue();
         assertThat(set.contains("banana")).isTrue();
         assertThat(set.contains(null)).isTrue();
