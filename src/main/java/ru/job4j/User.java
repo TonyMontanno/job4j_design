@@ -25,7 +25,7 @@ public class User {
         int hash1 = hashCode1 ^ (hashCode1 >>> 16);
         int bucket1 = hash1 & 15;
 
-        User user2 = new User("Stanly", 2, birthday);
+        User user2 = new User("John", 2, birthday);
         int hashCode2 = user2.hashCode();
         int hash2 = hashCode2 ^ (hashCode2 >>> 16);
         int bucket2 = hash2 & 15;
@@ -36,7 +36,6 @@ public class User {
         System.out.printf("user1 - хэшкод: %s, хэш: %s, бакет: %s", hashCode1, hash1, bucket1);
         System.out.println();
         System.out.printf("user2 - хэшкод: %s, хэш: %s, бакет: %s", hashCode2, hash2, bucket2);
-
     }
 }
 
