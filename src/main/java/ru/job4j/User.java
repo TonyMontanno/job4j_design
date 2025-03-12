@@ -29,13 +29,9 @@ public class User {
         return children == user.children && Objects.equals(name, user.name) && Objects.equals(birthday, user.birthday);
     }
 
-    /*
-    Переопределил таким образом метод hashCode(), потому что бот не пропускал по чек стайлу,
-    даже с аннотацией @SuppressWarnings("checkstyle:EqualsHashCode") над методом equals()
- */
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Objects.hash(name, children, birthday);
     }
 
     public static void main(String[] args) {
@@ -58,6 +54,8 @@ public class User {
         System.out.printf("user1 - хэшкод: %s, хэш: %s, бакет: %s", hashCode1, hash1, bucket1);
         System.out.println();
         System.out.printf("user2 - хэшкод: %s, хэш: %s, бакет: %s", hashCode2, hash2, bucket2);
+        System.out.println();
+        System.out.println("Равны ли объекты по equals: " + user1.equals(user2));
     }
 }
 
