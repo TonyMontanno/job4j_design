@@ -177,7 +177,6 @@ class NonCollisionMapTest {
         assertThat(myMap).hasSize(2);
     }
 
-
     @Test
     void whenKeyExistsThenGetReturnsValue() {
         SimpleMap<Integer, String> myMap = new NonCollisionMap<>();
