@@ -8,7 +8,6 @@ public class BackwardArrayIterator implements Iterator<Integer> {
     private int point;
 
     public BackwardArrayIterator(int[] data) {
-        /* реализуйте конструктор */
         this.data = data;
         this.point = data.length - 1;
 

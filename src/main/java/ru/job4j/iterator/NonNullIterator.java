@@ -18,7 +18,6 @@
                 index++;
             }
             return index < data.length;
-
         }
 
         @Override
@@ -27,7 +26,5 @@
                 throw new NoSuchElementException();
             }
             return data[index++];
-
         }
-
     }
