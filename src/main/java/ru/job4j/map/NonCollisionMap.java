@@ -18,6 +18,8 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
 
     @Override
     public boolean put(K key, V value) {
+        boolean result = false;
+
         if (count >= LOAD_FACTOR * capacity) {
             expand();
         }
@@ -28,14 +30,15 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
             table[indexOfBucket] = new MapEntry<>(key, value);
             count++;
             modCount++;
-            return true;
-        } else {
-            return false;
+            result = true;
         }
+
+        return result;
     }
 
     @Override
     public V get(K key) {
+        V result = null;
 
         int indexOfBucket = getIndexOfBucket(key);
 
@@ -43,18 +46,17 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
             MapEntry<K, V> mapEntry = table[indexOfBucket];
             int hashCode = Objects.hashCode(key);
 
-            if (hashCode == Objects.hashCode(mapEntry.key)) {
-
-                if (Objects.equals(mapEntry.key, key)) {
-                    return mapEntry.value;
-                }
+            if (hashCode == Objects.hashCode(mapEntry.key) && Objects.equals(mapEntry.key, key)) {
+                result = mapEntry.value;
             }
         }
-        return null;
+
+        return result;
     }
 
     @Override
     public boolean remove(K key) {
+        boolean result = false;
 
         int indexOfBucket = getIndexOfBucket(key);
 
@@ -62,17 +64,15 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
             MapEntry<K, V> mapEntry = table[indexOfBucket];
             int hashCode = Objects.hashCode(key);
 
-            if (hashCode == Objects.hashCode(mapEntry.key)) {
-
-                if (Objects.equals(mapEntry.key, key)) {
-                    table[indexOfBucket] = null;
-                    count--;
-                    modCount++;
-                    return true;
-                }
+            if (hashCode == Objects.hashCode(mapEntry.key) && Objects.equals(mapEntry.key, key)) {
+                table[indexOfBucket] = null;
+                count--;
+                modCount++;
+                result = true;
             }
         }
-        return false;
+
+        return result;
     }
 
     @Override
