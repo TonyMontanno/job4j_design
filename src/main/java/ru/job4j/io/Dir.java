@@ -21,7 +21,7 @@ public class Dir {
         if (files != null) {
             for (File file : files) {
                 if (file.isFile()) {
-                    System.out.println("Имя файла: " + file.getName() + " Размер файла: " + file.length());
+                    System.out.println(String.format("Имя файла: %s, Размер файла: %s", file.getName(), file.length()));
                 } else if (file.isDirectory()) {
                     listFiles(file);
                 }
