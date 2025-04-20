@@ -16,7 +16,7 @@ public class PathExample {
         Path pathOne = Path.of("path/paths/path1.txt");
         Files.createFile(pathOne);
 
-        Path pathTwo = Path.of("path/path2.txt");
+        Path pathTwo = Path.of("path/path1.txt");
         Files.createFile(pathTwo);
 
         DirectoryStream<Path> paths = Files.newDirectoryStream(target);
