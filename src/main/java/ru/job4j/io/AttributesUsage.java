@@ -8,8 +8,8 @@ import java.nio.file.attribute.BasicFileAttributes;
 
 public class AttributesUsage {
     public static void main(String[] args) throws IOException {
-//        Path file = Path.of("Attributes.txt");
-//        Files.createFile(file);
+        Path file = Path.of("Attributes.txt");
+        Files.createFile(file);
         BasicFileAttributes attributes = Files.readAttributes(Path.of("Attributes.txt"), BasicFileAttributes.class);
 
         System.out.println("Это обычный файл? " + attributes.isRegularFile());
