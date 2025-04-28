@@ -33,10 +33,10 @@ public class ConsoleChat {
             log.add(userInput);
             boolean isBotActive = true;
 
-            while (!userInput.equals(OUT)) {
-                if (userInput.equals(STOP)) {
+            while (!OUT.equals(userInput)) {
+                if (STOP.equals(userInput)) {
                     isBotActive = false;
-                } else if (userInput.equals(CONTINUE)) {
+                } else if (CONTINUE.equals(userInput)) {
                     isBotActive = true;
                 } else {
                     if (isBotActive) {
