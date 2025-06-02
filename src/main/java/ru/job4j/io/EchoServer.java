@@ -15,19 +15,30 @@ public class EchoServer {
                 try (OutputStream output = socket.getOutputStream();
                      BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
 
-                    output.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
-
                     String requestLine = input.readLine();
                     System.out.println(requestLine);
 
-                    if (requestLine.contains("GET /?msg=Bye")) {
-                        System.out.println("Завершение работы сервера по запросу клиента.");
-                        server.close();
-                    }
-                    for (String string = input.readLine(); string != null && !string.isEmpty(); string = input.readLine()) {
-                        System.out.println(string);
+                    output.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
 
+                    if (requestLine.contains("GET /?msg=Hello")) {
+                        output.write("Hello, dear friend.".getBytes());
+                    } else if (requestLine.contains("GET /?msg=Exit")) {
+                        System.out.println("Завершение работы сервера по запросу клиента.");
+                        output.write("Завершение работы сервера по запросу клиента,  через ключевое слово 'Exit'".getBytes());
                         output.flush();
+                        server.close();
+                        break;
+                    } else {
+                        int msgIndex = requestLine.indexOf("msg=") + 4;
+                        String msgValue = requestLine.substring(msgIndex).split(" ")[0];
+                        output.write(msgValue.getBytes());
+                    }
+
+                    output.flush();
+
+                    String headerLine;
+                    while ((headerLine = input.readLine()) != null && !headerLine.isEmpty()) {
+                        System.out.println(headerLine);
                     }
                 }
             }
