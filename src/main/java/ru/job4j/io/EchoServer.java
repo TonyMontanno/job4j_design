@@ -23,7 +23,6 @@ public class EchoServer {
                             System.out.println("Завершение работы сервера по запросу клиента.");
                             server.close();
                         }
-
                         output.flush();
                     }
                 }
