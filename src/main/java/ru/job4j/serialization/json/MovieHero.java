@@ -1,15 +1,35 @@
 package ru.job4j.serialization.json;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlElementWrapper;
+import jakarta.xml.bind.annotation.XmlRootElement;
+
 import java.util.Arrays;
 
+@XmlRootElement(name = "movieHero")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class MovieHero {
 
-    private final String name;
+    @XmlAttribute
+    private String name;
 
-    private final boolean isMan;
-    private final int age;
-    private final Car car;
-    private final String[] skills;
+    @XmlAttribute
+    private boolean isMan;
+
+    @XmlAttribute
+    private int age;
+
+    private Car car;
+
+    @XmlElementWrapper(name = "skills")
+    @XmlElement(name = "skill")
+    private String[] skills;
+
+    public MovieHero() {
+    }
 
     public MovieHero(String name, boolean isMan, int age, Car car, String[] skills) {
         this.name = name;
