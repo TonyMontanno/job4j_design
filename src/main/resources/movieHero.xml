@@ -1,0 +1,9 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<movieHero name="John Wick" isMan="true" age="50">
+    <car model="Ford Mustang Mach 1"/>
+    <skills>
+        <skill>Hand-to-Hand Combat</skill>
+        <skill>Marksmanship</skill>
+        <skill>Tactical Driving</skill>
+    </skills>
+</movieHero>
