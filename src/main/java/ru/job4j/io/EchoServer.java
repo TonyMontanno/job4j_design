@@ -12,7 +12,7 @@ import java.net.Socket;
 
 public class EchoServer {
 
-    private static final Logger LOG = LoggerFactory.getLogger(UsageLog4j.class.getName());
+    private static final Logger LOG = LoggerFactory.getLogger(EchoServer.class.getName());
 
     public static void main(String[] args) {
         try (ServerSocket server = new ServerSocket(9000)) {
@@ -29,7 +29,7 @@ public class EchoServer {
                     if (requestLine.contains("GET /?msg=Hello")) {
                         output.write("Hello, dear friend.".getBytes());
                     } else if (requestLine.contains("GET /?msg=Exit")) {
-                        System.out.println("Завершение работы сервера по запросу клиента.");
+                        System.out.println("Завершение работы сервера по запросу клиента");
                         output.write("Завершение работы сервера по запросу клиента,  через ключевое слово 'Exit'".getBytes());
                         output.flush();
                         server.close();
