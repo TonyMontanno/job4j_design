@@ -39,6 +39,26 @@ public class MovieHero {
         this.skills = skills;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public boolean isMan() {
+        return isMan;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public String[] getSkills() {
+        return skills;
+    }
+
     @Override
     public String toString() {
         return "Movie Hero {"

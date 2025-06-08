@@ -16,6 +16,10 @@ public class Car {
         this.model = model;
     }
 
+    public String getModel() {
+        return model;
+    }
+
     @Override
     public String toString() {
         return "Car{"
